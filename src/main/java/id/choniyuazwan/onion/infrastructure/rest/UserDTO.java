@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class UserDTO implements Serializable {
   private String username;
   private String fullname;
+  private String password;
 
   public String getUsername() {
     return username;
@@ -20,5 +21,13 @@ public class UserDTO implements Serializable {
 
   public void setFullname(String fullname) {
     this.fullname = fullname;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 }
