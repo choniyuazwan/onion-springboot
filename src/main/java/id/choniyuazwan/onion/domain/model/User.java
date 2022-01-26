@@ -3,7 +3,7 @@ package id.choniyuazwan.onion.domain.model;
 public class User {
   private String username;
   private String fullname;
-  private String password;
+  private UserCredential password;
 
   public String getUsername() {
     return username;
@@ -21,11 +21,11 @@ public class User {
     this.fullname = fullname;
   }
 
-  public String getPassword() {
+  public UserCredential getPassword() {
     return password;
   }
 
-  public void setPassword(String password) {
+  public void setPassword(UserCredential password) {
     this.password = password;
   }
 }

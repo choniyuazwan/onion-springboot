@@ -2,17 +2,19 @@ package id.choniyuazwan.onion.infrastructure.db.model;
 
 import javax.persistence.*;
 
-@Entity(name = "UserEntity")
-@Table(name = "user")
+@Entity
+@Table(name = "users")
 public class UserEntity {
   @Id
 //  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "username")
+  @Column
   private String username;
-  @Column(name = "fullname")
+  @Column
   private String fullname;
-  @Column(name = "password")
-  private String password;
+
+  @ManyToOne
+  @JoinColumn(name = "password")
+  private UserCredentialEntity password;
 
   public String getUsername() {
     return username;
@@ -30,11 +32,11 @@ public class UserEntity {
     this.fullname = fullname;
   }
 
-  public String getPassword() {
+  public UserCredentialEntity getPassword() {
     return password;
   }
 
-  public void setPassword(String password) {
+  public void setPassword(UserCredentialEntity password) {
     this.password = password;
   }
 }

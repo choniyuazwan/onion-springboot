@@ -1,10 +1,9 @@
 package id.choniyuazwan.onion.infrastructure.rest;
 
 import id.choniyuazwan.onion.domain.model.User;
-import id.choniyuazwan.onion.domain.service.UserService;
-import id.choniyuazwan.onion.service.CredentialGeneration;
+import id.choniyuazwan.onion.domain.model.UserCredential;
+import id.choniyuazwan.onion.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,19 +12,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserRest {
 
   @Autowired
-  private UserService service;
+  private UserManager userManager;
 
   @PostMapping(value = "/users")
-  public ResponseEntity<User> add(@RequestBody UserDTO userDTO) {
-    final User user = new User();
+  public String add(@RequestBody UserDTO userDTO) {
+    User user = new User();
+    UserCredential userCredential = new UserCredential();
 
     user.setUsername(userDTO.getUsername());
     user.setFullname(userDTO.getFullname());
-    String password  = CredentialGeneration.password(userDTO.getPassword());
-    user.setPassword(password);
+    userCredential.setPassword(userDTO.getPassword());
+    user.setPassword(userCredential);
 
-    service.add(user);
+    userManager.createUser(user);
 
-    return ResponseEntity.ok(user);
+    return "ok";
   }
 }
