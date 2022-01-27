@@ -1,7 +1,5 @@
 package id.choniyuazwan.onion.infrastructure.rest;
 
-import id.choniyuazwan.onion.domain.model.User;
-import id.choniyuazwan.onion.domain.model.UserCredential;
 import id.choniyuazwan.onion.infrastructure.rest.DTO.UserDTO;
 import id.choniyuazwan.onion.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +15,6 @@ public class UserRest {
 
   @PostMapping(value = "/users")
   public String add(@RequestBody UserDTO userDTO) {
-    User user = new User();
-    UserCredential userCredential = new UserCredential();
-
-    user.setUsername(userDTO.getUsername());
-    user.setFullname(userDTO.getFullname());
-    userCredential.setPassword(userDTO.getPassword());
-    user.setPassword(userCredential);
-
-    userManager.createUser(user);
-
-    return "ok";
+    if (userManager.createUser(userDTO.getUsername(), userDTO.getFullname(), userDTO.getPassword())) return "ok"; else return "failed";
   }
 }

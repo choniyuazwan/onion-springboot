@@ -11,8 +11,8 @@ public class UserService {
     this.repository = repository;
   }
 
-  public void add(User user) {
-    repository.add(user);
+  public Boolean add(User user) {
+    return repository.add(user);
   }
 
   public UserCredential getPassword(String username) {

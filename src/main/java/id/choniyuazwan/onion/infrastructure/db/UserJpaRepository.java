@@ -11,13 +11,14 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserJpaRepository extends CrudRepository<UserEntity, Integer>, UserRepository {
 
-  default void add(User user) {
+  default Boolean add(User user) {
     final UserEntity entity = new UserEntity();
     entity.setUsername(user.getUsername());
     entity.setFullname(user.getFullname());
     entity.setPassword(new UserCredentialEntity(user.getPassword().getId(), user.getPassword().getPassword()));
 
     this.save(entity);
+    return true;
   }
 
   @Query

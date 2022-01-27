@@ -7,6 +7,16 @@ public class UserDTO implements Serializable {
   private String fullname;
   private String password;
 
+  public UserDTO() {
+
+  }
+
+  public UserDTO(String username, String fullname, String password) {
+    this.username = username;
+    this.fullname = fullname;
+    this.password = password;
+  }
+
   public String getUsername() {
     return username;
   }

@@ -16,15 +16,13 @@ public class UserManager {
     this.userCredentialService = userCredentialService;
   }
 
-  public void createUser(User user) {
-    String password = user.getPassword().getPassword();
+  public Boolean createUser(String username, String fullname, String password) {
     UserCredential userCredential = new UserCredential();
 
     password = password != null && !password.trim().isEmpty() ? password : RandomString.make(6);
     userCredential.setPassword(password);
     userCredentialService.add(userCredential);
 
-    user.setPassword(userCredential);
-    userService.add(user);
+    return userService.add(new User(username, fullname, userCredential));
   }
 }
