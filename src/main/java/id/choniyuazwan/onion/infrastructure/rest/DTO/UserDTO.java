@@ -1,4 +1,4 @@
-package id.choniyuazwan.onion.infrastructure.rest;
+package id.choniyuazwan.onion.infrastructure.rest.DTO;
 
 import java.io.Serializable;
 

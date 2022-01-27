@@ -2,6 +2,7 @@ package id.choniyuazwan.onion.infrastructure.rest;
 
 import id.choniyuazwan.onion.domain.model.User;
 import id.choniyuazwan.onion.domain.model.UserCredential;
+import id.choniyuazwan.onion.infrastructure.rest.DTO.UserDTO;
 import id.choniyuazwan.onion.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

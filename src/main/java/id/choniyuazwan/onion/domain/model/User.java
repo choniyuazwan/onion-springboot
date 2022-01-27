@@ -5,6 +5,15 @@ public class User {
   private String fullname;
   private UserCredential password;
 
+  public User() {
+  }
+
+  public User(String username, String fullname, UserCredential password) {
+    this.username = username;
+    this.fullname = fullname;
+    this.password = password;
+  }
+
   public String getUsername() {
     return username;
   }

@@ -4,6 +4,15 @@ public class UserCredential {
   private Integer id;
   private String password;
 
+  public UserCredential() {
+
+  }
+
+  public UserCredential(Integer id, String password) {
+    this.id = id;
+    this.password = password;
+  }
+
   public Integer getId() {
     return id;
   }

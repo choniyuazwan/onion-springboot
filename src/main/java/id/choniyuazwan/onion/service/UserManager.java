@@ -23,7 +23,7 @@ public class UserManager {
     password = password != null && !password.trim().isEmpty() ? password : RandomString.make(6);
     userCredential.setPassword(password);
     userCredentialService.add(userCredential);
-    
+
     user.setPassword(userCredential);
     userService.add(user);
   }
