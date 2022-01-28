@@ -2,25 +2,32 @@ package id.choniyuazwan.onion.domain.service;
 
 import id.choniyuazwan.onion.domain.model.UserCredential;
 import id.choniyuazwan.onion.domain.service.repository.UserCredentialRepository;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
+import static org.mockito.Mockito.times;
+
+@RunWith(MockitoJUnitRunner.class)
 public class UserCredentialServiceTest {
-  @InjectMocks
   UserCredentialService userCredentialService;
 
   @Mock
   UserCredentialRepository userCredentialRepository;
 
+  @Before
+  public void before() throws Exception {
+    userCredentialService = new UserCredentialService(userCredentialRepository);
+  }
+
   @Test
   public void add() {
     UserCredential userCredential = new UserCredential(1, "a");
 
-    Mockito.doNothing().when(userCredentialRepository).add(userCredential);
-
     userCredentialService.add(userCredential);
-//    Assert.assertEquals(true, result);
+    Mockito.verify(userCredentialRepository, times(1)).add(userCredential);
   }
 }

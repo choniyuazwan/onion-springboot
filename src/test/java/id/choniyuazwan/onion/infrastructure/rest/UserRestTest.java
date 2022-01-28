@@ -49,5 +49,7 @@ public class UserRestTest {
         .andExpect(status().isOk())
         .andExpect(jsonPath("$", notNullValue()))
         .andExpect(jsonPath("$", is("ok")));
+
+    // ditambahin pengecekan kedatabase kalo row nya ke insert dengan hsqldb mock
   }
 }

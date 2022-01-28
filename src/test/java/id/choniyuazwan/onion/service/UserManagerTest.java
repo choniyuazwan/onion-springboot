@@ -1,26 +1,21 @@
 package id.choniyuazwan.onion.service;
 
-import id.choniyuazwan.onion.domain.model.User;
-import id.choniyuazwan.onion.domain.model.UserCredential;
 import id.choniyuazwan.onion.domain.service.UserCredentialService;
 import id.choniyuazwan.onion.domain.service.UserService;
-import id.choniyuazwan.onion.domain.service.repository.UserCredentialRepository;
-import id.choniyuazwan.onion.domain.service.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.stereotype.Service;
+
+import static org.mockito.Mockito.times;
 
 @Service
 @RunWith(MockitoJUnitRunner.class)
 public class UserManagerTest {
-  @InjectMocks
   UserManager userManager;
 
   @Mock
@@ -29,28 +24,23 @@ public class UserManagerTest {
   @Mock
   UserCredentialService userCredentialService;
 
-  @Mock
-  UserRepository userRepository;
-
-  @Mock
-  UserCredentialRepository userCredentialRepository;
-
   @Before
-  public void init() {
-    MockitoAnnotations.initMocks(this);
+  public void before() {
+    this.userManager = new UserManager(userService, userCredentialService);
   }
 
   @Test
   public void CreateUser() {
-
-    UserCredential userCredential = new UserCredential(1, "a");
-    User user = new User("a", "a", userCredential);
-//    Mockito.lenient().doNothing().when(userCredentialService).add(userCredential);
-//    Mockito.when(userService.add(user)).thenReturn(true);
-    Mockito.lenient().doNothing().when(userCredentialRepository).add(userCredential);
-    Mockito.when(userRepository.add(user)).thenReturn(true);
+    Mockito.when(userService.add(Mockito.any())).thenReturn(true);
 
     Boolean result = userManager.createUser("a", "a", "a");
+
+    Mockito.verify(userService, times(1)).add(Mockito.any());
     Assert.assertEquals(true, result);
+
+//    tambahi ArgumentCaptor
+//    Capture the argument of the doSomething function
+//    Mockito.ArgumentCaptor<SomeData> captor = ArgumentCaptor.forClass(SomeData.class);
+//    verify(other, times(1)).doSomething(captor.capture());
   }
 }
