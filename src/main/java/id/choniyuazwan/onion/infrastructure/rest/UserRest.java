@@ -15,6 +15,7 @@ public class UserRest {
 
   @PostMapping(value = "/users")
   public String add(@RequestBody UserDTO userDTO) {
-    if (userManager.createUser(userDTO.getUsername(), userDTO.getFullname(), userDTO.getPassword())) return "ok"; else return "failed";
+    userManager.createUser(userDTO.getUsername(), userDTO.getFullname(), userDTO.getPassword());
+    return "ok";
   }
 }

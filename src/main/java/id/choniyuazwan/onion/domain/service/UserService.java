@@ -3,6 +3,8 @@ package id.choniyuazwan.onion.domain.service;
 import id.choniyuazwan.onion.domain.model.User;
 import id.choniyuazwan.onion.domain.model.UserCredential;
 import id.choniyuazwan.onion.domain.service.repository.UserRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 public class UserService {
   private final UserRepository repository;

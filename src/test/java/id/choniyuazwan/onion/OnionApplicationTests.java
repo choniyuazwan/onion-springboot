@@ -1,8 +1,11 @@
 package id.choniyuazwan.onion;
 
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 class OnionApplicationTests {
 
@@ -10,4 +13,8 @@ class OnionApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	public void main() {
+		OnionApplication.main(new String[] {});
+	}
 }

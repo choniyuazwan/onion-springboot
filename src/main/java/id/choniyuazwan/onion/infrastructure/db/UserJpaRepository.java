@@ -23,6 +23,9 @@ public interface UserJpaRepository extends CrudRepository<UserEntity, Integer>, 
 
   @Query
   UserEntity findByUsername(@Param("username") String username);
+  
+  @Query
+  UserEntity findByUse
 
   default UserCredential getPassword(String username) {
     UserEntity userEntity = findByUsername(username) == null ? new UserEntity() : findByUsername(username);

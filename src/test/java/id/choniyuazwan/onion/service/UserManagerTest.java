@@ -1,11 +1,15 @@
 package id.choniyuazwan.onion.service;
 
+import id.choniyuazwan.onion.domain.model.User;
+import id.choniyuazwan.onion.domain.model.UserCredential;
 import id.choniyuazwan.onion.domain.service.UserCredentialService;
 import id.choniyuazwan.onion.domain.service.UserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -24,6 +28,12 @@ public class UserManagerTest {
   @Mock
   UserCredentialService userCredentialService;
 
+  @Captor
+  ArgumentCaptor<User> userCaptor;
+
+  @Captor
+  ArgumentCaptor<UserCredential> userCredentialCaptor;
+
   @Before
   public void before() {
     this.userManager = new UserManager(userService, userCredentialService);
@@ -37,6 +47,19 @@ public class UserManagerTest {
 
     Mockito.verify(userService, times(1)).add(Mockito.any());
     Assert.assertEquals(true, result);
+
+    Mockito.verify(userCredentialService).add(userCredentialCaptor.capture());
+    Mockito.verify(userService).add(userCaptor.capture());
+
+    Mockito.verify(userCredentialService, times(1)).add(userCredentialCaptor.capture());
+    Mockito.verify(userService, times(1)).add(userCaptor.capture());
+
+    UserCredential userCredentialCaptorValue = userCredentialCaptor.getValue();
+    User userCaptorValue = userCaptor.getValue();
+
+    Assert.assertEquals("a", userCredentialCaptorValue.getPassword());
+    Assert.assertEquals("a", userCaptorValue.getUsername());
+
 
 //    tambahi ArgumentCaptor
 //    Capture the argument of the doSomething function

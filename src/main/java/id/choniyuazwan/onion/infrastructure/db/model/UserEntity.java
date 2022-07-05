@@ -15,6 +15,20 @@ public class UserEntity {
   @JoinColumn(name = "password")
   private UserCredentialEntity password;
 
+  public void setPassword(UserCredentialEntity password) {
+    this.password = password;
+  }
+
+  public UserEntity() {
+
+  }
+
+  public UserEntity(String username, String fullname, UserCredentialEntity password) {
+    this.username = username;
+    this.fullname = fullname;
+    this.password = password;
+  }
+
   public String getUsername() {
     return username;
   }
@@ -35,8 +49,5 @@ public class UserEntity {
     return password;
   }
 
-  public void setPassword(UserCredentialEntity password) {
-    this.password = password;
-  }
 }
 
